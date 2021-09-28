@@ -1,23 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [data, setData] = useState({
+    amount: "0",
+    givenCash: "0",
+  });
+  const [error, setError] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const calculateChange = (e) => {
+    e.preventDefault();
+    setError("");
+    const { amount, givenCash } = data;
+
+    if (!givenCash || !amount) {
+      return setError("Please enter both the values");
+    }
+
+    if (givenCash < amount) {
+      return setError("The given amount is not enough!");
+    }
+
+    console.log(amount, givenCash);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Cash Register</h1>
       </header>
+      <main>
+        <form>
+          <div>
+            <label htmlFor="amount">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              value={data.amount}
+              placeholder="Amount"
+              onChange={handleInputChange}
+              min="0"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="givenCash">Given Cash</label>
+            <input
+              type="number"
+              name="givenCash"
+              value={data.givenCash}
+              placeholder="Cash given"
+              onChange={handleInputChange}
+              min="0"
+              required
+            />
+          </div>
+          <button onClick={calculateChange}>Calculate Change</button>
+        </form>
+        {error && <p className="error">{error}</p>}
+      </main>
+      <footer>
+        Create with love by{" "}
+        <a href="https://www.atulgairola.tech/">Atul Gairola</a>
+      </footer>
     </div>
   );
 }
