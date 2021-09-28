@@ -7,6 +7,15 @@ function App() {
     givenCash: "0",
   });
   const [error, setError] = useState("");
+  const [notes, setNotes] = useState({
+    2000: 0,
+    500: 0,
+    100: 0,
+    20: 0,
+    10: 0,
+    5: 0,
+    1: 0,
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -16,10 +25,24 @@ function App() {
     }));
   };
 
+  const resetTable = () => {
+    setNotes({
+      2000: 0,
+      500: 0,
+      100: 0,
+      20: 0,
+      10: 0,
+      5: 0,
+      1: 0,
+    });
+  };
+
   const calculateChange = (e) => {
     e.preventDefault();
     setError("");
-    const { amount, givenCash } = data;
+    resetTable();
+
+    let { amount, givenCash } = data;
 
     if (!givenCash || !amount) {
       return setError("Please enter both the values");
@@ -29,7 +52,31 @@ function App() {
       return setError("The given amount is not enough!");
     }
 
-    console.log(amount, givenCash);
+    amount = Number(amount);
+    givenCash = Number(givenCash);
+
+    let balance = givenCash - amount;
+
+    Object.keys(notes)
+      .sort((a, b) => b - a)
+      .forEach((note) => {
+        const numOfNotes = Math.trunc(balance / note);
+
+        if (numOfNotes > 0) {
+          setNotes((prev) => ({
+            ...prev,
+            [note]: numOfNotes,
+          }));
+
+          balance %= note;
+        } else {
+          setNotes((prev) => ({
+            ...prev,
+            [note]: 0,
+          }));
+        }
+      });
+
   };
 
   return (
@@ -74,25 +121,17 @@ function App() {
             <thead>
               <tr>
                 <th>Note Amount</th>
-                <th>2000</th>
-                <th>500</th>
-                <th>100</th>
-                <th>20</th>
-                <th>10</th>
-                <th>5</th>
-                <th>1</th>
+                {Object.keys(notes).map((note) => (
+                  <th>{note}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th>Note Count</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                {Object.values(notes).map((num) => (
+                  <td>{num}</td>
+                ))}
               </tr>
             </tbody>
           </table>
