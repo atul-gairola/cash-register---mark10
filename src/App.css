@@ -1,21 +1,116 @@
+body {
+  background: #eee;
+}
+
 .App {
   text-align: center;
+}
+
+header {
+  padding: 30px 50px;
+}
+
+main {
+  margin: 50px 0;
+}
+
+form {
+  display: grid;
+  grid-gap: 30px;
+  justify-items: center;
+  padding: 50px;
+  border-radius: 5px;
+  width: 50%;
+  min-width: 300px;
+  margin: 30px auto;
+  background: #fff;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.inputContainer {
+  display: grid;
+  grid-gap: 10px;
+}
+
+label {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+input {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+button {
+  width: fit-content;
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background: #cab8ff;
+  transition: 0.7s;
+  margin-top: 10px;
+  box-shadow: 5px 5px 10px rgba(190, 172, 255, 0.6);
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 30px rgba(190, 172, 255, 0);
+}
+
+button:active {
+  transform: scale(1);
+  box-shadow: 5px 5px 30px rgba(190, 172, 255, 0);
+}
+
+.error {
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+  width: 50%;
+  margin: 30px auto;
 }
 
 .tableContainer {
   display: grid;
   place-content: center;
+  margin-top: 60px;
 }
 
-table,
-th,
-td {
-  border: 1px solid black;
+.tableContainer > h2 {
+  margin-bottom: 30px;
+}
+
+table {
+  background-color: #fff;
+  border-radius: 5px;
   border-collapse: collapse;
+  background: #fff;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 th,
 td {
   width: 150px;
-  padding: 10px;
+  padding: 20px;
+}
+
+th {
+  color: #4e21d4;
+}
+
+td {
+  font-size: 1.3rem;
+}
+
+thead th {
+  border-bottom: 1px solid #000;
+}
+
+footer {
+  padding: 20px 50px;
 }

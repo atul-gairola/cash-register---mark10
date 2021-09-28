@@ -3,8 +3,8 @@ import "./App.css";
 
 function App() {
   const [data, setData] = useState({
-    amount: "0",
-    givenCash: "0",
+    amount: "",
+    givenCash: "",
   });
   const [error, setError] = useState("");
   const [notes, setNotes] = useState({
@@ -76,7 +76,6 @@ function App() {
           }));
         }
       });
-
   };
 
   return (
@@ -86,8 +85,8 @@ function App() {
       </header>
       <main>
         <form>
-          <div>
-            <label htmlFor="amount">Amount</label>
+          <div className="inputContainer">
+            <label htmlFor="amount">Enter Amount</label>
             <input
               type="number"
               name="amount"
@@ -99,8 +98,8 @@ function App() {
             />
           </div>
           {data.amount && data.amount !== "0" && (
-            <div>
-              <label htmlFor="givenCash">Given Cash</label>
+            <div className="inputContainer">
+              <label htmlFor="givenCash">Enter Given Cash</label>
               <input
                 type="number"
                 name="givenCash"
@@ -116,7 +115,7 @@ function App() {
         </form>
         {error && <p className="error">{error}</p>}
         <div className="tableContainer">
-          <p>Return Change</p>
+          <h2>Return Change</h2>
           <table>
             <thead>
               <tr>

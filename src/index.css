@@ -8,6 +8,12 @@
   outline: none;
 }
 
+a {
+  font-weight: bold;
+  text-decoration: inherit;
+  color: inherit;
+}
+
 button {
   cursor: pointer;
 }
