@@ -51,21 +51,52 @@ function App() {
               required
             />
           </div>
-          <div>
-            <label htmlFor="givenCash">Given Cash</label>
-            <input
-              type="number"
-              name="givenCash"
-              value={data.givenCash}
-              placeholder="Cash given"
-              onChange={handleInputChange}
-              min="0"
-              required
-            />
-          </div>
+          {data.amount && data.amount !== "0" && (
+            <div>
+              <label htmlFor="givenCash">Given Cash</label>
+              <input
+                type="number"
+                name="givenCash"
+                value={data.givenCash}
+                placeholder="Cash given"
+                onChange={handleInputChange}
+                min="0"
+                required
+              />
+            </div>
+          )}
           <button onClick={calculateChange}>Calculate Change</button>
         </form>
         {error && <p className="error">{error}</p>}
+        <div className="tableContainer">
+          <p>Return Change</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Note Amount</th>
+                <th>2000</th>
+                <th>500</th>
+                <th>100</th>
+                <th>20</th>
+                <th>10</th>
+                <th>5</th>
+                <th>1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Note Count</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </main>
       <footer>
         Create with love by{" "}
